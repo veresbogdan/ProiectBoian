@@ -1,43 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
 <!-- @version $Id: applicationContext.xml 561608 2007-08-01 00:33:12Z vgritsenko $ -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:configurator="http://cocoon.apache.org/schema/configurator"
-       xmlns:avalon="http://cocoon.apache.org/schema/avalon"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
-                           http://cocoon.apache.org/schema/configurator http://cocoon.apache.org/schema/configurator/cocoon-configurator-1.0.1.xsd
-                           http://cocoon.apache.org/schema/avalon http://cocoon.apache.org/schema/avalon/cocoon-avalon-1.0.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-  <!-- Activate Cocoon Spring Configurator -->
-  <configurator:settings/>
+    <!-- Configure Log4j -->
+    <!--<bean name="org.apache.cocoon.spring.configurator.log4j"-->
+          <!--class="org.apache.cocoon.spring.configurator.log4j.Log4JConfigurator"-->
+          <!--scope="singleton">-->
+        <!--<property name="resource" value="/WEB-INF/log4j.xml"/>-->
+    <!--</bean>-->
+    <context:spring-configured/>
+    <context:annotation-config />
 
-  <!-- Configure Log4j -->
-  <bean name="org.apache.cocoon.spring.configurator.log4j"
-        class="org.apache.cocoon.spring.configurator.log4j.Log4JConfigurator"
-        scope="singleton">
-    <property name="settings" ref="org.apache.cocoon.configuration.Settings"/>
-    <property name="resource" value="/WEB-INF/log4j.xml"/>
-  </bean>
+    <context:component-scan base-package="project">
+        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
 
-  <!-- Activate Avalon Bridge -->
-  <avalon:bridge/>
+    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+        <property name="numTestsPerEvictionRun" value="3"/>
+        <property name="minEvictableIdleTimeMillis" value="1800000"/>
+        <property name="validationQuery" value="SELECT version();"/>
+        <property name="accessToUnderlyingConnectionAllowed" value="true"/>
+    </bean>
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <task:annotation-driven/>
 </beans>
