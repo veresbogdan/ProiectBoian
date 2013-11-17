@@ -10,13 +10,9 @@ import java.util.Map;
 
 public class GenericDao {
 
-    @PersistenceContext(unitName = "persistenceUnit")
+    @PersistenceContext()
     protected EntityManager entityManager;
 
-    public <T extends EntityBase> void create(T entity) {
-        entityManager.persist(entity);
-    }
-    
     public <T extends EntityBase> List<T> findAll(Class<T> entityClass) {
         return entityManager.createQuery("SELECT t FROM " + entityClass.getSimpleName() + " t").getResultList();
     }
