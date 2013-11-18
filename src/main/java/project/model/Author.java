@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "`user`")
-public class User extends EntityBase {
+@Table(name = "`author`")
+public class Author extends EntityBase {
 
     private String name;
 
-    private Long cnp;
+    private String nationality;
 
-    private String email;
-
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    @ManyToMany
+    @JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, inverseJoinColumns = { @JoinColumn(name = "book_id") })
     private List<Book> books = new ArrayList<Book>();
 
     public String getName() {
@@ -25,20 +24,12 @@ public class User extends EntityBase {
         this.name = name;
     }
 
-    public Long getCnp() {
-        return cnp;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setCnp(Long cnp) {
-        this.cnp = cnp;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
     public List<Book> getBooks() {

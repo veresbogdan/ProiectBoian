@@ -1,5 +1,6 @@
 package project.dao;
 
+import project.criteria.BaseSearchCriteria;
 import project.model.EntityBase;
 
 import javax.persistence.EntityManager;
@@ -17,7 +18,6 @@ public class GenericDao {
         return entityManager.createQuery("SELECT t FROM " + entityClass.getSimpleName() + " t").getResultList();
     }
 
-    //todo: refactor
     public <T extends EntityBase> List<T> findByCriteria(Map<String, Object> criteriaMap, Class<T> entityClass) {
         Query query = constructSelectQuery(criteriaMap, entityClass);
         return query.getResultList();
@@ -61,21 +61,21 @@ public class GenericDao {
         return query;
     }
 
-//    public <T extends EntityBase, E extends BaseSearchCriteria> List<T> findByPagedCriteria(E criteria, Map<String, Object> criteriaMap, Class<T> entityClass) {
-//        Query selectQuery = constructSelectQuery(criteriaMap, entityClass);
-//
-//        if (criteria.getPageNo() != null && criteria.getPerPage() != null) {
-//
-//            Query countQuery = constructCountQuery(criteriaMap, entityClass);
-//            Long count = (Long)countQuery.getSingleResult();
-//            criteria.setTotalNo(count.intValue());
-//
-//            selectQuery.setFirstResult(criteria.getStartRecord());
-//            selectQuery.setMaxResults(criteria.getPerPage());
-//        }
-//
-//        return selectQuery.getResultList();
-//    }
+    public <T extends EntityBase, E extends BaseSearchCriteria> List<T> findByPagedCriteria(E criteria, Map<String, Object> criteriaMap, Class<T> entityClass) {
+        Query selectQuery = constructSelectQuery(criteriaMap, entityClass);
+
+        if (criteria.getPageNo() != null && criteria.getPerPage() != null) {
+
+            Query countQuery = constructCountQuery(criteriaMap, entityClass);
+            Long count = (Long)countQuery.getSingleResult();
+            criteria.setTotalNo(count.intValue());
+
+            selectQuery.setFirstResult(criteria.getStartRecord());
+            selectQuery.setMaxResults(criteria.getPerPage());
+        }
+
+        return selectQuery.getResultList();
+    }
 
     public <T extends EntityBase> T saveOrUpdate(T entity) {
         T savedEntity = entityManager.merge(entity);
@@ -88,11 +88,6 @@ public class GenericDao {
     }
 
     public <T extends EntityBase> void delete(Object entity) {
-        entityManager.remove(entity);
-    }
-
-    public <T extends EntityBase> void delete(Long id, Class<T> entityClass) {
-        T entity = findById(entityClass, id);
         entityManager.remove(entity);
     }
 }
