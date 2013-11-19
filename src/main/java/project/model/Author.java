@@ -1,5 +1,7 @@
 package project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ public class Author extends EntityBase {
 
     private String nationality;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, inverseJoinColumns = { @JoinColumn(name = "book_id") })
     private List<Book> books = new ArrayList<Book>();
