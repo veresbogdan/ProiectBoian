@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.criteria.BookSearchCriteria;
+import project.model.Author;
 import project.model.Book;
 import project.service.BookService;
 
@@ -20,12 +21,17 @@ public class BookController extends BaseController {
     private BookService bookService;
 
     @RequestMapping(value = "/book/findAll", method = RequestMethod.GET)
-    public @ResponseBody List<Book> findByCriteria() {
+    public @ResponseBody List<Book> findAllBooks() {
         return bookService.getAllBooks();
     }
 
     @RequestMapping(value = "/book/find", method = RequestMethod.POST)
     public @ResponseBody List<Book> findByCriteria(@RequestBody BookSearchCriteria searchCriteria) {
         return (List<Book>)bookService.findByCriteria(searchCriteria).get("result");
+    }
+
+    @RequestMapping(value = "/author/findAll", method = RequestMethod.GET)
+    public @ResponseBody List<Author> findAllAuthors() {
+        return bookService.getAllAuthors();
     }
 }

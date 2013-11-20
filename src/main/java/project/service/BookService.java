@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.criteria.BookSearchCriteria;
 import project.dao.BookDao;
+import project.model.Author;
 import project.model.Book;
 
 import java.util.HashMap;
@@ -30,5 +31,9 @@ public class BookService {
         response.put("result", images);
 
         return response;
+    }
+
+    public List<Author> getAllAuthors() {
+        return bookDao.findAll(Author.class);
     }
 }

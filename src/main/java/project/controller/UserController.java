@@ -22,4 +22,14 @@ public class UserController extends BaseController{
     public @ResponseBody List<User> findByCriteria() {
         return userService.getAllUsers();
     }
+
+    @RequestMapping(value = "/user/create", method = RequestMethod.POST)
+    public @ResponseBody User createUser(@RequestBody User user) {
+        return userService.createUser(user);
+    }
+
+    @RequestMapping(value = "/user/update", method = RequestMethod.POST)
+    public @ResponseBody User updateUser(@RequestBody User user) {
+        return userService.updateUSer(user);
+    }
 }

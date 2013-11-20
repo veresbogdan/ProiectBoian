@@ -22,4 +22,33 @@ public class UserService {
     public List<User> getAllUsers() {
         return userDao.findAll(User.class);
     }
+
+    public User createUser(User user) {
+        User responseUser = null;
+        if (user.getName() != null && !user.getName().isEmpty() && user.getCnp() != null) {
+            responseUser =  userDao.saveOrUpdate(user);
+        }
+
+        return responseUser;
+    }
+
+    public User updateUSer(User user) {
+        if (user.getId() != null) {
+            User oldUser = userDao.findById(User.class, user.getId());
+
+            if (user.getName() != null && !user.getName().isEmpty()) {
+                oldUser.setName(user.getName());
+            }
+            if (user.getCnp() != null) {
+                oldUser.setCnp(user.getCnp());
+            }
+            if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+                oldUser.setEmail(user.getEmail());
+            }
+
+            return userDao.saveOrUpdate(oldUser);
+        }
+
+        return null;
+    }
 }
