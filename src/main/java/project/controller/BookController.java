@@ -30,6 +30,21 @@ public class BookController extends BaseController {
         return (List<Book>)bookService.findByCriteria(searchCriteria).get("result");
     }
 
+    @RequestMapping(value = "/book/create", method = RequestMethod.POST)
+    public @ResponseBody Book createBook(@RequestBody Book book) {
+        return bookService.createBook(book);
+    }
+
+    @RequestMapping(value = "/book/update", method = RequestMethod.POST)
+    public @ResponseBody Book updateBook(@RequestBody Book book) {
+        return bookService.updateBook(book);
+    }
+
+    @RequestMapping(value = "/book/delete", method = RequestMethod.POST)
+    public @ResponseBody Book deleteBook(@RequestBody Book book) {
+        return bookService.deleteBook(book);
+    }
+
     @RequestMapping(value = "/author/findAll", method = RequestMethod.GET)
     public @ResponseBody List<Author> findAllAuthors() {
         return bookService.getAllAuthors();

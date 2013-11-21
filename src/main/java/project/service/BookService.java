@@ -36,4 +36,49 @@ public class BookService {
     public List<Author> getAllAuthors() {
         return bookDao.findAll(Author.class);
     }
+
+    public Book createBook(Book book) {
+        if (book.getTitle() != null && !book.getTitle().isEmpty() && book.getAuthors() != null && !book.getAuthors().isEmpty() && book.getYear() != null) {
+            return bookDao.saveOrUpdate(book);
+        }
+
+        return null;
+    }
+
+    public Book updateBook(Book book) {
+        if (book.getId() != null) {
+            Book oldBook = bookDao.findById(Book.class, book.getId());
+
+            if (book.getTitle() != null && !book.getTitle().isEmpty()) {
+                oldBook.setTitle(book.getTitle());
+            }
+            if (book.getYear() != null) {
+                oldBook.setYear(book.getYear());
+            }
+            if (book.getLanguage() != null) {
+                oldBook.setLanguage(book.getLanguage());
+            }
+            if (book.getPublisher() != null) {
+                oldBook.setPublisher(book.getPublisher());
+            }
+            if (book.getAuthors() != null && !book.getAuthors().isEmpty()) {
+                oldBook.setAuthors(book.getAuthors());
+            }
+
+            return bookDao.saveOrUpdate(oldBook);
+        }
+
+        return null;
+    }
+
+    public Book deleteBook(Book book) {
+        if (book.getId() != null) {
+            Book oldBook = bookDao.findById(Book.class, book.getId());
+
+            bookDao.delete(oldBook);
+            return oldBook;
+        }
+
+        return null;
+    }
 }

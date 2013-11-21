@@ -51,4 +51,17 @@ public class UserService {
 
         return null;
     }
+
+    public User deleteUser(User user) {
+        if (user.getId() != null) {
+            User oldUser = userDao.findById(User.class, user.getId());
+
+            if (oldUser.getBooks().isEmpty()) {
+                userDao.delete(oldUser);
+                return oldUser;
+            }
+        }
+
+        return null;
+    }
 }
