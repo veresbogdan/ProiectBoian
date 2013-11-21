@@ -45,6 +45,11 @@ public class BookController extends BaseController {
         return bookService.deleteBook(book);
     }
 
+    @RequestMapping(value = "/book/borrow", method = RequestMethod.POST)
+    public @ResponseBody Book borrowBook(@RequestBody Book book) {
+        return bookService.borrowBook(book);
+    }
+
     @RequestMapping(value = "/author/findAll", method = RequestMethod.GET)
     public @ResponseBody List<Author> findAllAuthors() {
         return bookService.getAllAuthors();

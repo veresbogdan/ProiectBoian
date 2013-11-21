@@ -8,9 +8,7 @@ import project.dao.BookDao;
 import project.model.Author;
 import project.model.Book;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Transactional
@@ -18,6 +16,9 @@ public class BookService {
 
     @Autowired
     private BookDao bookDao;
+
+    @Autowired
+    private UserService userService;
 
     public List<Book> getAllBooks() {
         return bookDao.findAll(Book.class);
@@ -75,8 +76,29 @@ public class BookService {
         if (book.getId() != null) {
             Book oldBook = bookDao.findById(Book.class, book.getId());
 
-            bookDao.delete(oldBook);
-            return oldBook;
+            if (oldBook.getUser() == null) {
+                bookDao.delete(oldBook);
+                return oldBook;
+            }
+        }
+
+        return null;
+    }
+
+    public Book borrowBook(Book book) {
+        if (book.getId() != null && book.getUser() != null && userService.getUserById(book.getUser().getId()) != null) {
+            Book oldBook = bookDao.findById(Book.class, book.getId());
+
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, 1);
+
+            oldBook.setUser(userService.getUserById(book.getUser().getId()));
+            oldBook.setBookingDate(date);
+            oldBook.setDueDate(calendar.getTime());
+
+            return bookDao.saveOrUpdate(oldBook);
         }
 
         return null;

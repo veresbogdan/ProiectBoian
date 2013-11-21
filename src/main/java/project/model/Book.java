@@ -13,6 +13,8 @@ public class Book extends EntityBase {
 
     private Date bookingDate;
 
+    private Date dueDate;
+
     private String language;
 
     private String publisher;
@@ -47,6 +49,14 @@ public class Book extends EntityBase {
 
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     public String getLanguage() {
