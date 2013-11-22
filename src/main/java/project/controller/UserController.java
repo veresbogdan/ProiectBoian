@@ -2,10 +2,7 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import project.model.User;
 import project.service.UserService;
 
@@ -23,6 +20,11 @@ public class UserController extends BaseController{
         return userService.getAllUsers();
     }
 
+    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
+    public @ResponseBody User findById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public @ResponseBody User createUser(@RequestBody User user) {
         return userService.createUser(user);
@@ -33,7 +35,7 @@ public class UserController extends BaseController{
         return userService.updateUSer(user);
     }
 
-    @RequestMapping(value = "/user/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public @ResponseBody User deleteUser(@RequestBody User user) {
         return userService.deleteUser(user);
     }

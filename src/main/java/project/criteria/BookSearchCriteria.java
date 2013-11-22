@@ -15,6 +15,9 @@ public class BookSearchCriteria extends BaseSearchCriteria {
     @JsonProperty(value = "author_id")
     private Integer authorId;
 
+    @JsonProperty(value = "user_id")
+    private Long userId;
+
     public String getTitle() {
         return title;
     }
@@ -45,5 +48,13 @@ public class BookSearchCriteria extends BaseSearchCriteria {
 
     public void setAuthorId(Integer authorId) {
         this.authorId = authorId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -64,6 +64,15 @@ public class BookDao extends GenericDao {
             }
         }
 
+        if (searchCriteria.getUserId() != null) {
+            if (first) {
+                queryString += " WHERE t.user.id =:user.id ";
+                first = false;
+            } else {
+                queryString += " AND t.user.id =:user.id ";
+            }
+        }
+
         if (searchCriteria.getAuthorId() != null) {
             if (first) {
                 queryString += " WHERE ";
@@ -90,6 +99,9 @@ public class BookDao extends GenericDao {
         }
         if (searchCriteria.getPublisher() != null) {
             query.setParameter("publisher", searchCriteria.getPublisher());
+        }
+        if (searchCriteria.getUserId() != null) {
+            query.setParameter("user.id", searchCriteria.getUserId());
         }
         if (searchCriteria.getAuthorId() != null) {
             query.setParameter("authorId", searchCriteria.getAuthorId());

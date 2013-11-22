@@ -103,4 +103,18 @@ public class BookService {
 
         return null;
     }
+
+    public Book returnBook(Book book) {
+        if (book.getId() != null && book.getUser() != null) {
+            Book oldBook = bookDao.findById(Book.class, book.getId());
+
+            oldBook.setUser(null);
+            oldBook.setBookingDate(null);
+            oldBook.setDueDate(null);
+
+            return bookDao.saveOrUpdate(oldBook);
+        }
+
+        return null;
+    }
 }

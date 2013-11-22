@@ -14,43 +14,48 @@ import project.service.BookService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/book")
 public class BookController extends BaseController {
 
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "/book/findAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public @ResponseBody List<Book> findAllBooks() {
         return bookService.getAllBooks();
     }
 
-    @RequestMapping(value = "/book/find", method = RequestMethod.POST)
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
     public @ResponseBody List<Book> findByCriteria(@RequestBody BookSearchCriteria searchCriteria) {
         return (List<Book>)bookService.findByCriteria(searchCriteria).get("result");
     }
 
-    @RequestMapping(value = "/book/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public @ResponseBody Book createBook(@RequestBody Book book) {
         return bookService.createBook(book);
     }
 
-    @RequestMapping(value = "/book/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public @ResponseBody Book updateBook(@RequestBody Book book) {
         return bookService.updateBook(book);
     }
 
-    @RequestMapping(value = "/book/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public @ResponseBody Book deleteBook(@RequestBody Book book) {
         return bookService.deleteBook(book);
     }
 
-    @RequestMapping(value = "/book/borrow", method = RequestMethod.POST)
+    @RequestMapping(value = "/borrow", method = RequestMethod.POST)
     public @ResponseBody Book borrowBook(@RequestBody Book book) {
         return bookService.borrowBook(book);
     }
 
-    @RequestMapping(value = "/author/findAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/eturn", method = RequestMethod.POST)
+    public @ResponseBody Book returnBook(@RequestBody Book book) {
+        return bookService.returnBook(book);
+    }
+
+    @RequestMapping(value = "/findAllAuthors", method = RequestMethod.GET)
     public @ResponseBody List<Author> findAllAuthors() {
         return bookService.getAllAuthors();
     }
