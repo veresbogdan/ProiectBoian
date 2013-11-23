@@ -5,10 +5,9 @@
 <html>
 <head>
     <title>Biblioteca</title>
-    <link media="all" type="text/css" rel="stylesheet" href="../style.css">
+    <link media="all" type="text/css" rel="stylesheet" href="style.css">
 </head>
 <body>
-
 
 <div id="wrapper">
 
