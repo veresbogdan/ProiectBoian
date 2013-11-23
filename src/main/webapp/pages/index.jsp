@@ -1,6 +1,9 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
+    <spring:url value="/pages/style.css" var="resourceUrl"/>
+    <link media="screen" rel="stylesheet" href="${resourceUrl}" type="text/css" />
     <title>Biblioteca</title>
     <link media="all" type="text/css" rel="stylesheet" href="style.css">
 </head>
