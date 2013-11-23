@@ -2,10 +2,7 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import project.criteria.BookSearchCriteria;
 import project.model.Author;
 import project.model.Book;
@@ -58,5 +55,10 @@ public class BookController extends BaseController {
     @RequestMapping(value = "/findAllAuthors", method = RequestMethod.GET)
     public @ResponseBody List<Author> findAllAuthors() {
         return bookService.getAllAuthors();
+    }
+
+    @RequestMapping(value = "/findAuthor/{id}", method = RequestMethod.GET)
+    public @ResponseBody Author findAuthorById(@PathVariable Long id) {
+        return bookService.findAuthorById(id);
     }
 }

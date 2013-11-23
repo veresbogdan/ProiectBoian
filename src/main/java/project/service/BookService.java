@@ -117,4 +117,8 @@ public class BookService {
 
         return null;
     }
+
+    public Author findAuthorById(Long id) {
+        return bookDao.findById(Author.class, id);
+    }
 }
