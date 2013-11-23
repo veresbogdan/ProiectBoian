@@ -1,11 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Biblioteca</title>
-    <link media="all" type="text/css" rel="stylesheet" href="style.css">
+    <title>Biblioteca-carti</title>
+    <spring:url value="/pages/style.css" var="resourceUrl"/>
+    <link media="screen" rel="stylesheet" href="${resourceUrl}" type="text/css" />
+
 </head>
 <body>
 
@@ -68,6 +76,21 @@
                 <th>Stare</th>
                 </thead>
                 <tbody>
+
+                <c:forEach var="book" items="${books_result}">
+                    <tr>
+                        <td><c:out value="${book.title}"></c:out></td>
+                        <td><c:out value="${contact.name}"></c:out></td>
+                        <td><c:out value="${contact.address}"></c:out> </td>
+                        <td><c:out value="${contact.mobile}"></c:out></td>
+                        <%--<td>--%>
+                            <%--<a href="updateContact.do?id=${contact.id}">Edit</a>--%>
+                            <%--<a href="javascript:deleteContact('deleteContact.do?id=${contact.id}');">Delete</a>--%>
+                        <%--</td>--%>
+                    </tr>
+                </c:forEach>
+
+
                 <tr>
                     <td>Carte 1</td>
                     <td>Editura 1</td>

@@ -3,6 +3,7 @@ package project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import project.criteria.BookSearchCriteria;
 import project.model.Author;
 import project.model.Book;
@@ -18,8 +19,10 @@ public class BookController extends BaseController {
     private BookService bookService;
 
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    public @ResponseBody List<Book> findAllBooks() {
-        return bookService.getAllBooks();
+    public @ResponseBody ModelAndView findAllBooks() {
+        ModelAndView mav = new ModelAndView("all_books");
+        mav.addObject("books_result",bookService.getAllBooks());
+        return mav;
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
