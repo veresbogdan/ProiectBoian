@@ -50,7 +50,7 @@ public class BookController extends BaseController {
         return bookService.borrowBook(book);
     }
 
-    @RequestMapping(value = "/eturn", method = RequestMethod.POST)
+    @RequestMapping(value = "/return", method = RequestMethod.POST)
     public @ResponseBody Book returnBook(@RequestBody Book book) {
         return bookService.returnBook(book);
     }
