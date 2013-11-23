@@ -40,6 +40,18 @@ public class BookService {
 
     public Book createBook(Book book) {
         if (book.getTitle() != null && !book.getTitle().isEmpty() && book.getAuthors() != null && !book.getAuthors().isEmpty() && book.getYear() != null) {
+            List<Author> newAuthors = new ArrayList<Author>();
+
+            for (Author author: book.getAuthors()) {
+                if (author.getId() != null && findAuthorById(author.getId()) != null) {
+                    Author oldAuthor = findAuthorById(author.getId());
+                    newAuthors.add(oldAuthor);
+                } else {
+                    newAuthors.add(author);
+                }
+            }
+            book.setAuthors(newAuthors);
+
             return bookDao.saveOrUpdate(book);
         }
 
