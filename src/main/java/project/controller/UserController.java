@@ -3,6 +3,7 @@ package project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import project.model.User;
 import project.service.UserService;
 
@@ -15,9 +16,12 @@ public class UserController extends BaseController{
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    public @ResponseBody List<User> findByCriteria() {
-        return userService.getAllUsers();
+    @RequestMapping(value = "/manage", method = RequestMethod.GET)
+    public @ResponseBody ModelAndView findByCriteria() {
+        ModelAndView mav = new ModelAndView("crud_users");
+        mav.addObject("users_result", userService.getAllUsers());
+
+        return mav;
     }
 
     @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
