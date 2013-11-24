@@ -80,41 +80,30 @@
                 <c:forEach var="book" items="${books_result}">
                     <tr>
                         <td><c:out value="${book.title}"></c:out></td>
-                        <td><c:out value="${contact.name}"></c:out></td>
-                        <td><c:out value="${contact.address}"></c:out> </td>
-                        <td><c:out value="${contact.mobile}"></c:out></td>
-                        <%--<td>--%>
-                            <%--<a href="updateContact.do?id=${contact.id}">Edit</a>--%>
-                            <%--<a href="javascript:deleteContact('deleteContact.do?id=${contact.id}');">Delete</a>--%>
-                        <%--</td>--%>
+                        <td><c:out value="${book.publisher}"></c:out></td>
+                        <td>
+                            <c:forEach  var="author" items="${book.authors}">
+                                <c:out value="${author.name}"></c:out> <br/>
+                            </c:forEach>
+                        </td>
+
+                            <c:choose>
+                                <c:when test="${book.bookingDate != null}">
+                                    <td class="red">
+                                         <c:out value="Imprumutata"></c:out>
+
+                                </c:when>
+                                <c:otherwise>
+                                    <td class="green">
+                                        <c:out value="Disponibila"></c:out>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </td>
+                        
                     </tr>
                 </c:forEach>
 
-
-                <tr>
-                    <td>Carte 1</td>
-                    <td>Editura 1</td>
-                    <td>Autor1, Autor 2</td>
-                    <td>Imprumutata</td>
-                </tr>
-                <tr>
-                    <td>Carte 1</td>
-                    <td>Editura 1</td>
-                    <td>Autor1, Autor 2</td>
-                    <td>Imprumutata</td>
-                </tr>
-                <tr>
-                    <td>Carte 1</td>
-                    <td>Editura 1</td>
-                    <td>Autor1, Autor 2</td>
-                    <td class="red">Imprumutata</td>
-                </tr>
-                <tr>
-                    <td>Carte 1</td>
-                    <td>Editura 1</td>
-                    <td>Autor1, Autor 2</td>
-                    <td class="green">Disponibila</td>
-                </tr>
                 </tbody>
 
             </table>
