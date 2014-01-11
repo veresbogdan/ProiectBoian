@@ -14,6 +14,9 @@
     <spring:url value="/pages/style.css" var="resourceUrl"/>
     <link media="screen" rel="stylesheet" href="${resourceUrl}" type="text/css" />
 
+    <spring:url value="/pages/js/common.js" var="jqueryURL"/>
+    <script type='text/javascript' src="${jqueryURL}"></script>
+
 </head>
 <body>
 
@@ -49,7 +52,7 @@
 
     <div id='main-container'>
 
-        <div id="left-container" class="left inline">
+        <div id="left-menu" class="left inline">
 
             <div class="leftTabMenu">
                 <ul>
@@ -63,42 +66,47 @@
 
         </div><!--left-container-->
 
-        <div id="right-container" class="left inline">
+        <div class="left inline">
 
-            <div id="infos">
+            <table>
+                <thead>
+                <th>Nume Carte</th>
+                <th>Editura</th>
+                <th>Autori</th>
+                <th>Stare</th>
+                </thead>
+                <tbody>
 
-                <h4>Informatii carte</h4>
-                <br/>
-                <table>
+                <c:forEach var="book" items="${books_result}">
                     <tr>
-                        <td>Nume:</td>
-                        <td>Carte 1</td>
-                    </tr>
-                    <tr>
-                        <td>Stare:</td>
-                        <td>Imprumutata</td>
-                    </tr>
+                        <td><c:out value="${book.title}"></c:out></td>
+                        <td><c:out value="${book.publisher}"></c:out></td>
+                        <td>
+                            <c:forEach  var="author" items="${book.authors}">
+                                <c:out value="${author.name}"></c:out> <br/>
+                            </c:forEach>
+                        </td>
 
-                    <tr><td colspan="2">&nbsp;</td></tr>
+                        <c:choose>
+                        <c:when test="${book.bookingDate != null}">
+                        <td class="red">
+                                <c:out value="Imprumutata"></c:out>
 
-                    <tr>
-                        <td>User:</td>
-                        <td>Mihai Dan</td>
+                            </c:when>
+                            <c:otherwise>
+                        <td class="green">
+                            <c:out value="Disponibila"></c:out>
+                            </c:otherwise>
+                            </c:choose>
+
+                        </td>
+
                     </tr>
-                    <tr>
-                        <td>Data Imprumut:</td>
-                        <td>11.11.2013</td>
-                    </tr>
-                    <tr>
-                        <td>Data Limita:</td>
-                        <td>25.11.2013</td>
-                    </tr>
+                </c:forEach>
 
-                </table>
+                </tbody>
 
-                <button> Returneaza </button>
-
-            </div>
+            </table>
 
         </div><!-- right container-->
 

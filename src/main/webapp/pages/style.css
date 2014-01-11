@@ -166,9 +166,9 @@ html, body{
     font-weight:bold;
 }
 
-main-container{
+#main-container{
+    margin-top:20px;
     height:auto;
-
     width:100%;
 }
 
@@ -192,6 +192,9 @@ main-container{
     border-right:1px solid silver;
 }
 
+#left-menu {
+
+}
 
 #infos {
     margin: 20px;
@@ -250,8 +253,6 @@ button {
 
 
 .leftTabMenu{
-
-
     border:none;
     border:0px;
     margin:0px;
@@ -259,7 +260,6 @@ button {
     font: 67.5% Helvetica, sans-serif;
     font-size:14px;
     font-weight:bold;
-    width: 250px;
 }
 
 .leftTabMenu ul{
