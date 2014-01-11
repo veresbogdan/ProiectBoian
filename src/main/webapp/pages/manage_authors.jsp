@@ -83,10 +83,10 @@
                 <c:when test="${param.action=='delete'}">
                     <jsp:include page="./authors/delete_author.jsp"></jsp:include>
                 </c:when>
-
-                <c:otherwise>
+                <c:when test="${param.action=='add'}">
                     <jsp:include page="./authors/add_author.jsp"></jsp:include>
-                </c:otherwise>
+                </c:when>
+                <c:otherwise>Operation successful.</c:otherwise>
             </c:choose>
 
         </div><!-- right container-->
