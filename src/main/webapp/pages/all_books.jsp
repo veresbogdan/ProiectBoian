@@ -29,12 +29,12 @@
 
         <div class="menu">
             <ul>
-                <li><a href="#" >Lista Carti</a></li>
-                <li><a href="#" id="current">Gestiune Biblioteca</a>
+                <li><a href="./listAll" >Lista Carti</a></li>
+                <li><a href="./manage" id="current">Gestiune Biblioteca</a>
                     <ul>
                         <li><a href="#">Gestiune Autori</a></li>
-                        <li><a href="#">Gestiune Carti</a></li>
-                        <li><a href="#">Gestiune Utilizatori</a></li>
+                        <li><a href="./manage">Gestiune Carti</a></li>
+                        <li><a href="../user/manage">Gestiune Utilizatori</a></li>
                     </ul>
                 </li>
 

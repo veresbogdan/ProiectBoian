@@ -18,7 +18,7 @@ public class BookController extends BaseController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     public @ResponseBody ModelAndView findAllBooks() {
         ModelAndView mav = new ModelAndView("all_books");
         mav.addObject("books_result", bookService.getAllBooks());
