@@ -50,7 +50,7 @@
                     contentType: "application/json",
                     data: JSON.stringify($("#authorForm").serializeObject()),
                     success: function (data, textStatus, jqXHR) {
-                        // do something with your data here.
+                        window.location.href = "../author/manage"
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // likewise do something with your error here.

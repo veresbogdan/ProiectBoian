@@ -55,7 +55,7 @@ public class AuthorService {
 
             if (oldAuthor.getBooks().isEmpty()) {
                 //To Do: delete many to many reference
-               // oldAuthor.delete(oldAuthor);
+                authorDao.delete(oldAuthor);
                 return oldAuthor;
             }
         }
