@@ -9,8 +9,63 @@
 <html>
 <head>
     <title></title>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-add author page
+
+    <form id="authorForm" action="" method="">
+        Nume Autor: <input type="text" name="name" id="name" /> <br />
+        Nationalitate: <input type="text" name="nationality" id="nationality" /> <br />
+        <input type="submit" />
+    </form>
+
+
+    <!-- START Scripts for JSON POST -->
+
+    <script type="text/javascript">
+        $(function () {
+            $.fn.serializeObject = function()
+            {
+                var o = {};
+                var a = this.serializeArray();
+                $.each(a, function() {
+                    if (o[this.name] !== undefined) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+                return o;
+            };
+
+
+            $("#authorForm").bind("submit", function(evt) {
+                console.log(JSON.stringify($("#authorForm").serializeObject()));
+
+                $.ajax({
+                    url: "../author/create",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify($("#authorForm").serializeObject()),
+                    success: function (data, textStatus, jqXHR) {
+                        // do something with your data here.
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // likewise do something with your error here.
+                    }
+                });
+
+                return false;
+            });
+
+        });
+    </script>
+
+    <!-- END Scripts for JSON POST -->
+
 </body>
 </html>
