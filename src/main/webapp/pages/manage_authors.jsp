@@ -29,11 +29,11 @@
 
         <div class="menu">
             <ul>
-                <li><a href="./listAll" >Lista Carti</a></li>
-                <li><a href="./manage" id="current">Gestiune Biblioteca</a>
+                <li><a href="../book/listAll" >Lista Carti</a></li>
+                <li><a href="../book/manage" id="current">Gestiune Biblioteca</a>
                     <ul>
-                        <li><a href="../author/manage">Gestiune Autori</a></li>
-                        <li><a href="./manage">Gestiune Carti</a></li>
+                        <li><a href="./manage">Gestiune Autori</a></li>
+                        <li><a href="../book/manage">Gestiune Carti</a></li>
                         <li><a href="../user/manage">Gestiune Utilizatori</a></li>
                     </ul>
                 </li>
@@ -62,52 +62,19 @@
 
     </div><!-- menu container -->
 
-    <div class="clear"></div>
-
     <div id='main-container'>
 
         <div id="left-container" class="left inline">
 
-            <table>
-                <thead>
-                <th>Nume Carte</th>
-                <th>Editura</th>
-                <th>Autori</th>
-                <th>Stare</th>
-                </thead>
-                <tbody>
+            <div class="leftTabMenu">
+                <ul>
+                    <li><a href="./manage">Gestiune Autori</a></li>
+                    <li><a href="../book/manage">Gestiune Carti</a></li>
+                    <li><a href="../user/manage">Gestiune Utilizatori</a></li>
+                </ul>
+            </div><!-- menu -->
 
-                <c:forEach var="book" items="${books_result}">
-                    <tr>
-                        <td><c:out value="${book.title}"></c:out></td>
-                        <td><c:out value="${book.publisher}"></c:out></td>
-                        <td>
-                            <c:forEach  var="author" items="${book.authors}">
-                                <c:out value="${author.name}"></c:out> <br/>
-                            </c:forEach>
-                        </td>
-
-                            <c:choose>
-                                <c:when test="${book.bookingDate != null}">
-                                    <td class="red">
-                                         <c:out value="Imprumutata"></c:out>
-
-                                </c:when>
-                                <c:otherwise>
-                                    <td class="green">
-                                        <c:out value="Disponibila"></c:out>
-                                </c:otherwise>
-                            </c:choose>
-
-                        </td>
-                        
-                    </tr>
-                </c:forEach>
-
-                </tbody>
-
-            </table>
-
+            <div class="clear"></div>
 
         </div><!--left-container-->
 

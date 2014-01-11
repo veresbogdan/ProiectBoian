@@ -18,7 +18,7 @@ public class UserController extends BaseController{
 
     @RequestMapping(value = "/manage", method = RequestMethod.GET)
     public @ResponseBody ModelAndView findByCriteria() {
-        ModelAndView mav = new ModelAndView("crud_users");
+        ModelAndView mav = new ModelAndView("manage_users");
         mav.addObject("users_result", userService.getAllUsers());
 
         return mav;

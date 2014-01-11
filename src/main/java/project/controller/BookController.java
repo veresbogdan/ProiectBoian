@@ -28,7 +28,7 @@ public class BookController extends BaseController {
 
     @RequestMapping(value = "/manage", method = RequestMethod.GET)
     public @ResponseBody ModelAndView findAll() {
-        ModelAndView mav = new ModelAndView("crud_books");
+        ModelAndView mav = new ModelAndView("manage_books");
         mav.addObject("books_result", bookService.getAllBooks());
         mav.addObject("authors_result", bookService.getAllAuthors());
 
