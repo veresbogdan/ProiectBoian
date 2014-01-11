@@ -32,7 +32,7 @@
                 <li><a href="../book/listAll" >Lista Carti</a></li>
                 <li><a href="../book/manage" id="current">Gestiune Biblioteca</a>
                     <ul>
-                        <li><a href="../author/manage">Gestiune Autori</a></li>
+                        <li><a href="../author/manage?action=add">Gestiune Autori</a></li>
                         <li><a href="../book/manage">Gestiune Carti</a></li>
                         <li><a href="./manage">Gestiune Utilizatori</a></li>
                     </ul>
@@ -68,7 +68,7 @@
 
             <div class="leftTabMenu">
                 <ul>
-                    <li><a href="../author/manage">Gestiune Autori</a></li>
+                    <li><a href="../author/manage?action=add">Gestiune Autori</a></li>
                     <li><a href="../book/manage">Gestiune Carti</a></li>
                     <li><a href="./manage">Gestiune Utilizatori</a></li>
                 </ul>

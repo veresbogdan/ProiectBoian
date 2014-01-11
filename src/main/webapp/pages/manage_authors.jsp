@@ -32,7 +32,7 @@
                 <li><a href="../book/listAll" >Lista Carti</a></li>
                 <li><a href="../book/manage" id="current">Gestiune Biblioteca</a>
                     <ul>
-                        <li><a href="./manage">Gestiune Autori</a></li>
+                        <li><a href="./manage?action=add">Gestiune Autori</a></li>
                         <li><a href="../book/manage">Gestiune Carti</a></li>
                         <li><a href="../user/manage">Gestiune Utilizatori</a></li>
                     </ul>
@@ -64,13 +64,12 @@
 
     <div id='main-container'>
 
-        <div id="left-container" class="left inline">
+        <div id="edit-container" class="left inline">
 
-            <div class="leftTabMenu">
+            <div class="leftTabMenu" style="width: 300px">
                 <ul>
-                    <li><a href="./manage">Gestiune Autori</a></li>
-                    <li><a href="../book/manage">Gestiune Carti</a></li>
-                    <li><a href="../user/manage">Gestiune Utilizatori</a></li>
+                    <li><a href="./manage?action=add">Adauga autori</a></li>
+                    <li><a href="./manage?action=delete">Sterge autori</a></li>
                 </ul>
             </div><!-- menu -->
 
@@ -80,40 +79,15 @@
 
         <div id="right-container" class="left inline">
 
-            <div id="infos">
+            <c:choose>
+                <c:when test="${param.action=='delete'}">
+                    <jsp:include page="./authors/delete_author.jsp"></jsp:include>
+                </c:when>
 
-                <h4>Informatii carte</h4>
-                <br/>
-                <table>
-                    <tr>
-                        <td>Nume:</td>
-                        <td>Carte 1</td>
-                    </tr>
-                    <tr>
-                        <td>Stare:</td>
-                        <td>Imprumutata</td>
-                    </tr>
-
-                    <tr><td colspan="2">&nbsp;</td></tr>
-
-                    <tr>
-                        <td>User:</td>
-                        <td>Mihai Dan</td>
-                    </tr>
-                    <tr>
-                        <td>Data Imprumut:</td>
-                        <td>11.11.2013</td>
-                    </tr>
-                    <tr>
-                        <td>Data Limita:</td>
-                        <td>25.11.2013</td>
-                    </tr>
-
-                </table>
-
-                <button> Returneaza </button>
-
-            </div>
+                <c:otherwise>
+                    <jsp:include page="./authors/add_author.jsp"></jsp:include>
+                </c:otherwise>
+            </c:choose>
 
         </div><!-- right container-->
 
