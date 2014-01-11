@@ -33,27 +33,12 @@
                 <li><a href="./manage" id="current">Gestiune Biblioteca</a>
                     <ul>
                         <li><a href="../author/manage">Gestiune Autori</a></li>
-                        <li><a href="./manage">Gestiune Carti</a></li>
+                        <li><a href="../book/manage">Gestiune Carti</a></li>
                         <li><a href="../user/manage">Gestiune Utilizatori</a></li>
                     </ul>
                 </li>
 
             </ul>
-
-            <div id="search">
-
-                <form action="" method="">
-
-                    <span>Search</span>
-
-                    <input type="text" value=""/>
-
-                    <button type="submit"> Go </button>
-
-                </form>
-
-            </div><!-- search -->
-
 
         </div><!-- menu -->
 
@@ -68,9 +53,9 @@
 
             <div class="leftTabMenu">
                 <ul>
-                    <li><a href="../author/manage">Gestiune Autori</a></li>
-                    <li><a href="./manage">Gestiune Carti</a></li>
-                    <li><a href="../user/manage">Gestiune Utilizatori</a></li>
+                    <li><a href="../book/add">Adauga carte</a></li>
+                    <li><a href="../book/manage">Editeaza/Sterge Carte</a></li>
+
                 </ul>
             </div><!-- menu -->
 

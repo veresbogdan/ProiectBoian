@@ -99,7 +99,7 @@
                                 </c:otherwise>
                             </c:choose>
 
-                        </td>
+                                    </td>
                         
                     </tr>
                 </c:forEach>
