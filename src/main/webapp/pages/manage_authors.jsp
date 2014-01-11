@@ -14,6 +14,8 @@
     <spring:url value="/pages/style.css" var="resourceUrl"/>
     <link media="screen" rel="stylesheet" href="${resourceUrl}" type="text/css" />
 
+    <spring:url value="/pages/js/common.js" var="jqueryURL"/>
+    <script type='text/javascript' src="${jqueryURL}"></script>
 </head>
 <body>
 
@@ -81,10 +83,10 @@
 
             <c:choose>
                 <c:when test="${param.action=='delete'}">
-                    <jsp:include page="./authors/delete_author.jsp"></jsp:include>
+                    <jsp:include page="authors/delete_author.jsp"></jsp:include>
                 </c:when>
                 <c:when test="${param.action=='add'}">
-                    <jsp:include page="./authors/add_author.jsp"></jsp:include>
+                    <jsp:include page="authors/add_author.jsp"></jsp:include>
                 </c:when>
                 <c:otherwise>Operation successful.</c:otherwise>
             </c:choose>
