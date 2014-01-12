@@ -17,6 +17,7 @@
     <spring:url value="/pages/js/common.js" var="jqueryURL"/>
     <script type='text/javascript' src="${jqueryURL}"></script>
 
+    <spring:url value="/pages/images/biblioteca.png" var="bibliotecaUrl"/>
 </head>
 <body>
 
@@ -24,7 +25,7 @@
 
     <div id='header'>
 
-        <h1>Biblioteca</h1>
+        <img src="${bibliotecaUrl}">
 
     </div>
 
