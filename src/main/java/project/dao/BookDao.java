@@ -39,10 +39,10 @@ public class BookDao extends GenericDao {
 
         if (searchCriteria.getTitle() != null) {
             if (first) {
-                queryString += " WHERE t.title =:title ";
+                queryString += " WHERE t.title LIKE :title ";
                 first = false;
             } else {
-                queryString += " AND t.title =:title ";
+                queryString += " AND t.title LIKE :title ";
             }
         }
 
@@ -57,10 +57,10 @@ public class BookDao extends GenericDao {
 
         if (searchCriteria.getPublisher() != null) {
             if (first) {
-                queryString += " WHERE t.publisher =:publisher ";
+                queryString += " WHERE t.publisher LIKE :publisher ";
                 first = false;
             } else {
-                queryString += " AND t.publisher =:publisher ";
+                queryString += " AND t.publisher LIKE :publisher ";
             }
         }
 

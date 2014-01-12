@@ -25,11 +25,11 @@ public class BookService {
     }
 
     public Map<String, Object> findByCriteria(BookSearchCriteria searchCriteria) {
-        List<Book> images = bookDao.findByCriteria(searchCriteria);
+        List<Book> books = bookDao.findByCriteria(searchCriteria);
 
         Map<String, Object> response = new HashMap<String, Object>();
-        response.put("total_pages", searchCriteria.getNumberOfPages());
-        response.put("result", images);
+//        response.put("total_pages", searchCriteria.getNumberOfPages());
+        response.put("result", books);
 
         return response;
     }

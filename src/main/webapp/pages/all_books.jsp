@@ -46,15 +46,13 @@
 
             <div id="search">
 
-                <form action="" method="">
+
 
                     <span>Search</span>
 
-                    <input type="text" value=""/>
+                    <input type="text" name="search" value=""/>
 
                     <button onclick="search_books();"> Go </button>
-
-                </form>
 
             </div><!-- search -->
 
@@ -79,8 +77,8 @@
                 <th>Autori</th>
                 <th>Stare</th>
                 </thead>
-                <tbody>
 
+                <tbody>
                 <c:forEach var="book" items="${books_result}">
                     <tr>
                         <td onclick="show_details(${book.id})" style="cursor:pointer">
@@ -125,34 +123,7 @@
                 <br/>
 
                 <div id='info_area'>
-                    <%--<table>--%>
-                        <%--<tr>--%>
-                            <%--<td>Nume:</td>--%>
-                            <%--<td>Carte 1</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>Stare:</td>--%>
-                            <%--<td>Imprumutata</td>--%>
-                        <%--</tr>--%>
 
-                        <%--<tr><td colspan="2">&nbsp;</td></tr>--%>
-
-                        <%--<tr>--%>
-                            <%--<td>User:</td>--%>
-                            <%--<td>Mihai Dan</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>Data Imprumut:</td>--%>
-                            <%--<td>11.11.2013</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td>Data Limita:</td>--%>
-                            <%--<td>25.11.2013</td>--%>
-                        <%--</tr>--%>
-
-                    <%--</table>--%>
-
-                    <%--<button> Returneaza </button>--%>
                 </div>
 
             </div>
@@ -315,6 +286,73 @@
 
 
     }//borrow book
+
+    function search_books(){
+
+        var search = $('input[name="search"]').val();
+
+        if(search == '' ) {
+
+            alert('Ce doriti sa cautati?');
+
+            $('input[name="search"]').focus();
+
+        }//if nothing written in search box
+        else {
+
+            var form_data = {};
+
+            form_data['title'] = search;
+
+            $.ajax({
+                url: "../book/find",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(form_data),
+                success: function (data, textStatus, jqXHR) {
+                    // do something with your data here.
+                    if(data == null)
+                    {
+                        alert('Action crashed. Please try again.');
+                    }else{
+
+                        var to_append = '';
+
+
+                       for(var i=0;  i < data.length ; i++ ) {
+
+                           to_append += '<tr><td onclick="show_details('+data[i].id+')"style="cursor:pointer">';
+                           to_append += '<strong>'+data[i].title+'</strong></td>';
+                           to_append += '<td>'+data[i].publisher+'</td>';
+                           to_append += '<td>';
+                           for( var j = 0;  j < data[i].authors.length;j++ ){
+                               to_append += data[i].authors[j].name+'<br/>';
+                           }
+                           to_append += '</td>';
+
+                           if(data[i].bookingDate != null ) {
+                               to_append += '<td class="red">Imprumutata</td>';
+                           }else{
+                               to_append += '<td class="green">Disponibila</td>';
+                           }
+
+                           to_append += '</tr>';
+
+                       }//endfor
+
+                        console.log(to_append)
+                        $('tbody').html(to_append);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // likewise do something with your error here.
+                    alert(errorThrown)
+                }
+            });
+
+        }//search
+
+    }//search books
 
 
     function format_date(timestamp){
