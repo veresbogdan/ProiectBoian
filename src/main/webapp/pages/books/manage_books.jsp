@@ -54,10 +54,10 @@
 
         <div id="left-menu" class="left inline">
 
-            <div class="leftTabMenu">
+            <div class="leftTabMenu" style="width: 300px">
                 <ul>
-                    <li><a href="../book/create">Adauga carte</a></li>
-                    <li><a href="../book/manage">Editeaza/Sterge Carte</a></li>
+                    <li><a href="../book/create">Adauga Carte</a></li>
+                    <li><a href="../book/manage">Sterge Carte</a></li>
 
                 </ul>
             </div><!-- menu -->
@@ -74,6 +74,7 @@
                 <th>Editura</th>
                 <th>Autori</th>
                 <th>Stare</th>
+                <th></th>
                 </thead>
                 <tbody>
 
@@ -101,12 +102,46 @@
 
                         </td>
 
+                        <td><form id="deleteButton" action="" method="">
+                            <input readonly hidden="true" type="text" name="id" id="id" value="${book.id}"/>
+                            <button id="${book.id}" type="submit">Sterge</button>
+                        </form></td>
+
                     </tr>
                 </c:forEach>
 
                 </tbody>
 
             </table>
+
+            <!-- START Scripts for JSON POST -->
+
+            <script type="text/javascript">
+                $(function () {
+                    $("#deleteButton").bind("submit", function(evt) {
+                        <!--evt.currentTarget[1] is the button as second element (index 0) -->
+                        $JsonValue = "{\"id\":" + evt.currentTarget[1].id + "}";
+
+                        $.ajax({
+                            url: "../book/delete",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: $JsonValue,
+                            success: function (data, textStatus, jqXHR) {
+                                window.location.href = "./manage"
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert(errorThrown)
+                            }
+                        });
+
+                        return false;
+                    });
+
+                });
+            </script>
+
+            <!-- END Scripts for JSON POST -->
 
         </div><!-- right container-->
 
