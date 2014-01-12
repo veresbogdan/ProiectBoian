@@ -8,7 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Carti-adauga</title>
+    <spring:url value="/pages/style.css" var="resourceUrl"/>
+    <link media="screen" rel="stylesheet" href="${resourceUrl}" type="text/css" />
+
+    <spring:url value="/pages/js/common.js" var="jqueryURL"/>
+    <script type='text/javascript' src="${jqueryURL}"></script>
 </head>
 <body>
 

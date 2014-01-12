@@ -130,6 +130,10 @@ public class BookService {
         return null;
     }
 
+    public Book findBookById(Long id) {
+        return bookDao.findById(Book.class, id);
+    }
+
     public Author findAuthorById(Long id) {
         return bookDao.findById(Author.class, id);
     }

@@ -111,7 +111,7 @@
 
         </div><!--left-container-->
 
-        <div id="right-container" class="left inline">
+        <div id="right-container" class="left inline" style="display:none">
 
             <div id="infos">
 

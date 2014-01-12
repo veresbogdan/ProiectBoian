@@ -157,13 +157,15 @@ html, body{
     border-radius: 5px;
 }
 
-#search button{
+button, input[type=submit]{
     margin-right:30px;
-    width:50px;
-    height:25px;
+    /*width:50px;*/
+    /*height:25px;*/
     border-radius: 5px;
     background-color: #ffea73;
     font-weight:bold;
+    cursor:pointer;
+    padding: 5px 10px;
 }
 
 #main-container{
@@ -174,7 +176,7 @@ html, body{
 
 #left-container{
     width:60%;
-    margin-top:20px;
+
 }
 
 #left-container table{
@@ -247,9 +249,6 @@ html, body{
     font-weight:bold;
 }
 
-button {
-    cursor:pointer;
-}
 
 
 .leftTabMenu{
@@ -264,7 +263,6 @@ button {
 
 .leftTabMenu ul{
     background:#F93;
-    height:220px;
     list-style:none;
     margin:0;
     padding:0;
@@ -349,4 +347,13 @@ button {
 #edit-container{
     width:350px;
     margin-top:20px;
+}
+
+
+#right-content {
+    margin-left: 20px;
+}
+
+input {
+    border: 1px solid silver;
 }
