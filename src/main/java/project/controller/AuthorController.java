@@ -18,7 +18,7 @@ public class AuthorController extends BaseController{
 
     @RequestMapping(value = "/manage", method = RequestMethod.GET)
     public @ResponseBody ModelAndView findByCriteria() {
-        ModelAndView mav = new ModelAndView("manage_authors");
+        ModelAndView mav = new ModelAndView("authors/manage_authors");
         mav.addObject("authors_result", authorService.getAllAuthors());
 
         return mav;

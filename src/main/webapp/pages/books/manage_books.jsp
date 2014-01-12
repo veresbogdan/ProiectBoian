@@ -35,9 +35,9 @@
                 <li><a href="./listAll" >Lista Carti</a></li>
                 <li><a href="./manage" id="current">Gestiune Biblioteca</a>
                     <ul>
-                        <li><a href="../author/manage">Gestiune Autori</a></li>
+                        <li><a href="../author/manage?action=add">Gestiune Autori</a></li>
                         <li><a href="../book/manage">Gestiune Carti</a></li>
-                        <li><a href="../user/manage">Gestiune Utilizatori</a></li>
+                        <li><a href="../user/manage?action=add">Gestiune Utilizatori</a></li>
                     </ul>
                 </li>
 
