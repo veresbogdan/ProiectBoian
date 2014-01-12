@@ -8,7 +8,7 @@ import project.criteria.BookSearchCriteria;
 import project.model.Author;
 import project.model.Book;
 import project.service.BookService;
-
+import project.service.UserService;
 import java.util.List;
 
 @Controller
@@ -18,10 +18,14 @@ public class BookController extends BaseController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     public @ResponseBody ModelAndView findAllBooks() {
         ModelAndView mav = new ModelAndView("all_books");
         mav.addObject("books_result", bookService.getAllBooks());
+        mav.addObject("users_result",userService.getAllUsers());
 
         return mav;
     }
@@ -40,6 +44,11 @@ public class BookController extends BaseController {
         return (List<Book>)bookService.findByCriteria(searchCriteria).get("result");
     }
 
+    @RequestMapping(value = "/findBook/{id}", method = RequestMethod.POST)
+    public @ResponseBody Book findById(@PathVariable Long id) {
+        return bookService.findBookById(id);
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public @ResponseBody ModelAndView create() {
         ModelAndView mav = new ModelAndView("books/add_book");
@@ -51,9 +60,7 @@ public class BookController extends BaseController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public @ResponseBody Book createBook(@RequestBody Book book) {
         return bookService.createBook(book);
-
     }
-
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public @ResponseBody ModelAndView findBookById(@PathVariable Long id) {

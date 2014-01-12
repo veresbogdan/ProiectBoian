@@ -175,7 +175,7 @@ button, input[type=submit]{
 }
 
 #left-container{
-    width:60%;
+    width:70%;
 
 }
 
@@ -229,11 +229,11 @@ button, input[type=submit]{
 }
 
 #left-container table td{
-    padding:10px
+    padding:5px;
 }
 
 #right-container{
-    width:40%;
+    width:30%;
 }
 
 #infos button{

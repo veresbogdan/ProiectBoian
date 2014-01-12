@@ -104,7 +104,7 @@ public class BookService {
             Date date = new Date();
             Calendar calendar = new GregorianCalendar();
             calendar.setTime(date);
-            calendar.add(Calendar.DATE, 1);
+            calendar.add(Calendar.DATE, 14);
 
             oldBook.setUser(userService.getUserById(book.getUser().getId()));
             oldBook.setBookingDate(date);
