@@ -65,9 +65,9 @@
                 <li><a href="../book/listAll" >Lista Carti</a></li>
                 <li><a href="../book/manage" id="current">Gestiune Biblioteca</a>
                     <ul>
-                        <li><a href="./manage?action=add">Gestiune Autori</a></li>
+                        <li><a href="../author/manage?action=add">Gestiune Autori</a></li>
                         <li><a href="../book/manage">Gestiune Carti</a></li>
-                        <li><a href="../user/manage?action=add">Gestiune Utilizatori</a></li>
+                        <li><a href="./manage?action=add">Gestiune Utilizatori</a></li>
                     </ul>
                 </li>
 
@@ -101,8 +101,8 @@
 
             <div class="leftTabMenu" style="width: 300px">
                 <ul>
-                    <li><a href="./manage?action=add">Adauga Autor</a></li>
-                    <li><a href="./manage?action=delete">Sterge Autor</a></li>
+                    <li><a href="./manage?action=add">Adauga Utilizator</a></li>
+                    <li><a href="./manage?action=delete">Sterge Utilizator</a></li>
                 </ul>
             </div><!-- menu -->
 
@@ -119,21 +119,23 @@
                     <table id="tableEdit" class="tableEdit">
                         <thead>
                         <th>Id</th>
-                        <th>Nume</th>
-                        <th>Nationalitate</th>
+                        <th>CNP</th>
+                        <th>Email</th>
+                        <th>Name</th>
                         <th></th>
                         </thead>
                         <tbody>
 
-                        <c:forEach var="author" items="${authors_result}">
+                        <c:forEach var="user" items="${users_result}">
                             <tr>
-                                <td><c:out value="${author.id}"></c:out></td>
-                                <td><c:out value="${author.name}"></c:out></td>
-                                <td><c:out value="${author.nationality}"></c:out></td>
+                                <td><c:out value="${user.id}"></c:out></td>
+                                <td><c:out value="${user.cnp}"></c:out></td>
+                                <td><c:out value="${user.email}"></c:out></td>
+                                <td><c:out value="${user.name}"></c:out></td>
 
                                 <td><form id="deleteButton" action="" method="">
-                                    <input readonly hidden="true" type="text" name="id" id="id" value="${author.id}"/>
-                                    <button id="${author.id}" type="submit">Sterge</button>
+                                    <input readonly hidden="true" type="text" name="id" id="id" value="${user.id}"/>
+                                    <button id="${user.id}" type="submit">Sterge</button>
                                 </form></td>
                             </tr>
                         </c:forEach>
@@ -150,7 +152,7 @@
                                     $JsonValue = "{\"id\":" + evt.currentTarget[1].id + "}";
 
                                     $.ajax({
-                                        url: "../author/delete",
+                                        url: "../user/delete",
                                         type: "POST",
                                         contentType: "application/json",
                                         data: $JsonValue,
@@ -173,11 +175,11 @@
 
                     </table>
 
-                   <!-- END Edit page -->
+                    <!-- END Edit page -->
 
                 </c:when>
                 <c:when test="${param.action=='add'}">
-                    <jsp:include page="add_author.jsp"></jsp:include>
+                    <jsp:include page="add_user.jsp"></jsp:include>
                 </c:when>
                 <c:otherwise>Operation successful.</c:otherwise>
             </c:choose>

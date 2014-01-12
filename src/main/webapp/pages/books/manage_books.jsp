@@ -37,7 +37,7 @@
                     <ul>
                         <li><a href="../author/manage?action=add">Gestiune Autori</a></li>
                         <li><a href="../book/manage">Gestiune Carti</a></li>
-                        <li><a href="../user/manage">Gestiune Utilizatori</a></li>
+                        <li><a href="../user/manage?action=add">Gestiune Utilizatori</a></li>
                     </ul>
                 </li>
 

@@ -12,9 +12,10 @@
 </head>
 <body>
 
-    <form id="authorForm" action="" method="">
-        Nume Autor: <input type="text" name="name" id="name" /> <br />
-        Nationalitate: <input type="text" name="nationality" id="nationality" /> <br />
+    <form id="userForm" action="" method="">
+        CNP: <input type="text" name="cnp" id="cnp" /> <br />
+        Email: <input type="text" name="email" id="email" /> <br />
+        Name: <input type="text" name="name" id="name" /> <br />
         <input type="submit" />
     </form>
 
@@ -41,16 +42,16 @@
             };
 
 
-            $("#authorForm").bind("submit", function(evt) {
-                console.log(JSON.stringify($("#authorForm").serializeObject()));
+            $("#userForm").bind("submit", function(evt) {
+                console.log(JSON.stringify($("#userForm").serializeObject()));
 
                 $.ajax({
-                    url: "../author/create",
+                    url: "../user/create",
                     type: "POST",
                     contentType: "application/json",
-                    data: JSON.stringify($("#authorForm").serializeObject()),
+                    data: JSON.stringify($("#userForm").serializeObject()),
                     success: function (data, textStatus, jqXHR) {
-                        window.location.href = "../author/manage"
+                        window.location.href = "../user/manage"
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         // likewise do something with your error here.
