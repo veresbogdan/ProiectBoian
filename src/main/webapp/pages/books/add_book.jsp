@@ -62,7 +62,7 @@
             <div class="leftTabMenu">
                 <ul>
                     <li><a href="../book/create">Adauga carte</a></li>
-                    <li><a href="../book/manage">Editeaza/Sterge Carte</a></li>
+                    <li><a href="../book/manage">Sterge Carte</a></li>
 
                 </ul>
             </div><!-- menu -->

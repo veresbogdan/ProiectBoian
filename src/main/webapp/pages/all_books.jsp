@@ -302,7 +302,8 @@
 
             var form_data = {};
 
-            form_data['title'] = search;
+            form_data['title'] = '%'+search+'%';
+            form_data['publisher'] = '%'+search+'%';
 
             $.ajax({
                 url: "../book/find",

@@ -69,7 +69,7 @@
 
         <div id="right-content" class="left inline">
 
-            <table>
+            <table style="margin-top:0px;!important" class="general_table">
                 <thead>
                 <th>Nume Carte</th>
                 <th>Editura</th>

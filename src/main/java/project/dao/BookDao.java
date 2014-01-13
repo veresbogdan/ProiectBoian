@@ -42,7 +42,7 @@ public class BookDao extends GenericDao {
                 queryString += " WHERE t.title LIKE :title ";
                 first = false;
             } else {
-                queryString += " AND t.title LIKE :title ";
+                queryString += " OR t.title LIKE :title ";
             }
         }
 
@@ -51,7 +51,7 @@ public class BookDao extends GenericDao {
                 queryString += " WHERE t.year =:year ";
                 first = false;
             } else {
-                queryString += " AND t.year =:year ";
+                queryString += " OR t.year =:year ";
             }
         }
 
@@ -60,7 +60,7 @@ public class BookDao extends GenericDao {
                 queryString += " WHERE t.publisher LIKE :publisher ";
                 first = false;
             } else {
-                queryString += " AND t.publisher LIKE :publisher ";
+                queryString += " OR t.publisher LIKE :publisher ";
             }
         }
 
@@ -69,7 +69,7 @@ public class BookDao extends GenericDao {
                 queryString += " WHERE t.user.id =:user.id ";
                 first = false;
             } else {
-                queryString += " AND t.user.id =:user.id ";
+                queryString += " OR t.user.id =:user.id ";
             }
         }
 
@@ -77,7 +77,7 @@ public class BookDao extends GenericDao {
             if (first) {
                 queryString += " WHERE ";
             } else {
-                queryString += "AND ";
+                queryString += "OR ";
             }
             queryString += ":authorId IN (SELECT ba.author.id FROM BookAuthor ba WHERE ba.book.id = t.id)";
         }
