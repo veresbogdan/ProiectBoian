@@ -86,7 +86,7 @@
 
         <div id="leftEditContainer" class="left inline">
 
-            <div class="leftTabMenu">
+            <div class="leftTabMenu" style="width: 300px">
                 <ul>
                     <li><a href="./manage?action=add">Adauga Autor</a></li>
                     <li><a href="./manage?action=delete">Sterge Autor</a></li>

@@ -112,13 +112,15 @@
 
         </div><!--left container-->
 
-        <div>
+        <div id="right-content" class="left inline">
+
+
 
             <c:choose>
                 <c:when test="${param.action=='delete'}">
                     <!-- START Edit page -->
 
-                    <table id="tableEdit" class="tableEdit">
+                    <table style="margin-top:0px;!important" class="general_table">
                         <thead>
                         <th>Id</th>
                         <th>CNP</th>

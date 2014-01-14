@@ -11,13 +11,35 @@
     <title>Biblioteca-carti</title>
 </head>
 <body>
+<div id="right-content"  class="left inline">
+
 
     <form id="userForm" action="" method="">
-        CNP: <input type="text" name="cnp" id="cnp" /> <br />
-        Email: <input type="text" name="email" id="email" /> <br />
-        Name: <input type="text" name="name" id="name" /> <br />
-        <input type="submit" />
+        <table id="table-form">
+            <tr>
+                <td>CNP:</td>
+                <td><input type="text" name="cnp" id="cnp" /></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" id="email" /></td>
+            </tr>
+          <tr>
+              <td>
+                  Name:
+              </td>
+              <td>
+                  <input type="text" name="name" id="name" />
+              </td>
+          </tr>
+            <tr>
+                <td colspan="2"> <input type="submit" /></td>
+            </tr>
+
+
+            </table>
     </form>
+</div>
 
 
     <!-- START Scripts for JSON POST -->

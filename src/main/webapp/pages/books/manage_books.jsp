@@ -55,7 +55,7 @@
 
         <div id="left-menu" class="left inline">
 
-            <div class="leftTabMenu">
+            <div class="leftTabMenu" style="width: 300px">
                 <ul>
                     <li><a href="../book/create">Adauga Carte</a></li>
                     <li><a href="../book/manage">Sterge Carte</a></li>
