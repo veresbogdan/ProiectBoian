@@ -357,3 +357,18 @@ button, input[type=submit]{
 input {
     border: 1px solid silver;
 }
+
+
+#table-form {
+    min-width: 350px;
+}
+
+#table-form tr {
+    padding-bottom:10px;
+}
+
+#table-form input[type="text"]{
+    min-width:250px;
+    padding:5px;
+}
+

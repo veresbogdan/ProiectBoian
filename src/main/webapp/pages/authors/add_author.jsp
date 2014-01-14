@@ -12,12 +12,32 @@
 </head>
 <body>
 
+<div id="right-content"  class="left inline">
+
     <form id="authorForm" action="" method="">
-        Nume Autor: <input type="text" name="name" id="name" /> <br />
-        Nationalitate: <input type="text" name="nationality" id="nationality" /> <br />
-        <input type="submit" />
+        <table id="table-form">
+               <tr>
+                   <td>Nume Autor:</td>
+                   <td><input type="text" name="name" id="name" /></td>
+               </tr>
+            <tr>
+                <td>
+                    Nationalitate:
+                </td>
+                <td>
+                    <input type="text" name="nationality" id="nationality" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> <input type="submit" /></td>
+            </tr>
+
+        </table>
+
+
     </form>
 
+</div>
 
     <!-- START Scripts for JSON POST -->
 

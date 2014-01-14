@@ -79,7 +79,7 @@
 
             <form action="" method="">
 
-            <table>
+            <table id='table-form'>
                <tr>
                    <td>Titlu</td>
                    <td><input type="text" name="title"/></td>

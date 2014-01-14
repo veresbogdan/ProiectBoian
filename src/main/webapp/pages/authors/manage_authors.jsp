@@ -75,21 +75,6 @@
 
             </ul>
 
-            <div id="search">
-
-                <form action="" method="">
-
-                    <span>Search</span>
-
-                    <input type="text" value=""/>
-
-                    <button type="submit"> Go </button>
-
-                </form>
-
-            </div><!-- search -->
-
-
         </div><!-- menu -->
 
 
@@ -101,7 +86,7 @@
 
         <div id="leftEditContainer" class="left inline">
 
-            <div class="leftTabMenu" style="width: 300px">
+            <div class="leftTabMenu">
                 <ul>
                     <li><a href="./manage?action=add">Adauga Autor</a></li>
                     <li><a href="./manage?action=delete">Sterge Autor</a></li>
@@ -112,13 +97,13 @@
 
         </div><!--left container-->
 
-        <div>
+        <div id='right-content' class="left inline">
 
             <c:choose>
                 <c:when test="${param.action=='delete'}">
                     <!-- START Edit page -->
 
-                    <table id="tableEdit" class="tableEdit">
+                    <table  style="margin-top:0px;!important" class="general_table">
                         <thead>
                         <th>Id</th>
                         <th>Nume</th>
